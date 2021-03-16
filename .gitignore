@@ -340,3 +340,7 @@ ASALocalRun/
 healthchecksdb
 /IdentityServer/appsettings.json
 /IdentityServer/appsettings.Development.json
+/jsClient/appsettings.Development.json
+/jsClient/appsettings.json
+/IdentityServerAds/appsettings.json
+/IdentityServerAds/appsettings.Development.json
