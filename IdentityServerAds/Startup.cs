@@ -41,12 +41,14 @@ namespace IdentityServerAds
             })
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
+
             services.ConfigureApplicationCookie(config => {
                 config.Cookie.Name = "IdentityServer.Cookie";
                 config.LoginPath = "/Auth/Login";
                 config.LogoutPath = "/Auth/Logout";
-                config.AccessDeniedPath = "/Auth/UserAccessDenied";
+                //config.AccessDeniedPath = "/Auth/UserAccessDenied";
             });
+
             //exei mesa authentication/authorization..
             services.AddIdentityServer()
                 //to paketo identity server 4 asp 
@@ -56,28 +58,18 @@ namespace IdentityServerAds
                 .AddInMemoryClients(Configuration.GetClients())
                 .AddDeveloperSigningCredential();
 
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
-            {
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader();
-            }));
-
-            services.AddAuthorization(config => {
-                config.AddPolicy("Admin", policyBuilder => policyBuilder.RequireClaim(ClaimTypes.Role, "Admin"));
-            });
+            //services.AddAuthorization(config => {
+            //    config.AddPolicy("Admin", policyBuilder => policyBuilder.RequireClaim(ClaimTypes.Role, "Admin"));
+            //});
             services.AddControllersWithViews();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseCors("MyPolicy");
 
             app.UseRouting();
             app.UseStaticFiles();

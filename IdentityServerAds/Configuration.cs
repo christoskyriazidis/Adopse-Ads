@@ -47,13 +47,13 @@ namespace IdentityServerAds
                     RedirectUris ={"https://localhost:44366/home/signin"},
                     PostLogoutRedirectUris ={"https://localhost:44366/Home/Index"},
 
-                    AllowedCorsOrigins={"https://localhost:44366/"},
+                    AllowedCorsOrigins={"https://localhost:44366"},
 
                     AllowedScopes =
                     {
                         IdentityServer4.IdentityServerConstants.StandardScopes.OpenId,
-                        "ApiOne",
-                        "credentials"
+                        "credentials",
+                        "ResourceServer"
                     },
 
                     AccessTokenLifetime=1,
